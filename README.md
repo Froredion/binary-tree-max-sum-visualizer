@@ -28,6 +28,10 @@ This visualizer helps you understand one of the most challenging tree problems o
   - Best path edges highlighted in green
   - Detailed step information display
 
+## 🌐 Live Demo
+
+🔗 **[Try it live on GitHub Pages!](https://froredion.github.io/binary-tree-max-sum-visualizer)**
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -40,8 +44,8 @@ This visualizer helps you understand one of the most challenging tree problems o
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/binary-tree-visualizer.git
-cd binary-tree-visualizer
+git clone https://github.com/Froredion/binary-tree-max-sum-visualizer.git
+cd binary-tree-max-sum-visualizer
 ```
 
 2. Install dependencies:
@@ -136,7 +140,20 @@ In the project directory, you can run:
 - `npm start` - Runs the app in development mode
 - `npm test` - Launches the test runner
 - `npm run build` - Builds the app for production
+- `npm run deploy` - Deploys the app to GitHub Pages
 - `npm run eject` - Ejects from Create React App (one-way operation)
+
+## 🚀 Deployment
+
+This project is configured for easy deployment to GitHub Pages.
+
+**Quick Deploy:**
+
+```bash
+npm run deploy
+```
+
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ## 🤝 Contributing
 
