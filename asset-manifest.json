@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/binary-tree-visualizer/static/css/main.a0250ae6.css",
-    "main.js": "/binary-tree-visualizer/static/js/main.1e353947.js",
-    "index.html": "/binary-tree-visualizer/index.html",
-    "main.a0250ae6.css.map": "/binary-tree-visualizer/static/css/main.a0250ae6.css.map",
-    "main.1e353947.js.map": "/binary-tree-visualizer/static/js/main.1e353947.js.map"
+    "main.css": "/binary-tree-max-sum-visualizer/static/css/main.a0250ae6.css",
+    "main.js": "/binary-tree-max-sum-visualizer/static/js/main.1e353947.js",
+    "index.html": "/binary-tree-max-sum-visualizer/index.html",
+    "main.a0250ae6.css.map": "/binary-tree-max-sum-visualizer/static/css/main.a0250ae6.css.map",
+    "main.1e353947.js.map": "/binary-tree-max-sum-visualizer/static/js/main.1e353947.js.map"
   },
   "entrypoints": [
     "static/css/main.a0250ae6.css",
