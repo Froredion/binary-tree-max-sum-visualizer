@@ -412,6 +412,7 @@ function collectPathIds(peakId: number, leftLeafId: number | null, rightLeafId: 
 
 export default function App() {
   const [arrayText, setArrayText] = useState("[-10,9,20,null,null,15,7]");
+  const [builtArrayText, setBuiltArrayText] = useState(""); // Track what array was used to build the current tree
   const [root, setRoot] = useState<TreeNode | null>(null);
   const [frames, setFrames] = useState<Frame[]>([]);
   const [frameIndex, setFrameIndex] = useState(0);
@@ -456,6 +457,13 @@ export default function App() {
     }
   }, [frames, frameIndex]);
 
+  // Auto-rebuild tree when array text changes if a tree already exists
+  useEffect(() => {
+    if (root && arrayText !== builtArrayText) {
+      onBuild();
+    }
+  }, [arrayText]);
+
   function onBuild() {
     try {
       const arr = parseArray(arrayText);
@@ -467,6 +475,7 @@ export default function App() {
         setPlaying(false);
         setGlobalMax(null);
         setBestIds([]);
+        setBuiltArrayText("");
         return;
       }
       assignLayout(t);
@@ -477,13 +486,16 @@ export default function App() {
       setPlaying(false);
       setGlobalMax(null);
       setBestIds([]);
+      setBuiltArrayText(arrayText); // Track what we just built
     } catch (e) {
       alert("Invalid input. Use an array like [1,2,3,null,4]");
     }
   }
 
   function onStart() {
-    if (!frames.length) return;
+    if (!frames.length) {
+      onBuild();
+    }
     setPlaying(true);
   }
   function onPause() {
@@ -559,13 +571,12 @@ export default function App() {
           </div>
           <div className="flex gap-2">
             <button className="px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800" onClick={onBuild}>Build Tree</button>
-            <button className="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300" onClick={() => setExample(2)}>Example</button>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-2 mb-3">
-          <button className="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-500" onClick={onStart} disabled={!frames.length || playing}>Start</button>
-          <button className="px-4 py-2 rounded-xl bg-amber-500 text-white hover:bg-amber-400" onClick={onPause} disabled={!frames.length || !playing}>Pause</button>
+          <button className={`px-4 py-2 rounded-xl text-white ${playing ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-500'}`} onClick={onStart} disabled={playing}>Start</button>
+          <button className={`px-4 py-2 rounded-xl text-white ${!frames.length || !playing ? 'bg-gray-400 cursor-not-allowed' : 'bg-amber-500 hover:bg-amber-400'}`} onClick={onPause} disabled={!frames.length || !playing}>Pause</button>
           <button className="px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300" onClick={onBack} disabled={!frames.length}>◀︎ Back</button>
           <button className="px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300" onClick={onStep} disabled={!frames.length}>Step ▶︎</button>
           <button className="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300" onClick={onReset} disabled={!frames.length}>Reset</button>
